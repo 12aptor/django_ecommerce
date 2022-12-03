@@ -10,6 +10,9 @@ class CategoriasModel(models.Model):
   descripcion = models.CharField(max_length=100)
   estado = models.BooleanField(default=True)
 
+  def __str__(self) -> str:
+    return self.nombre
+
   class Meta:
     db_table = "categorias"
 
@@ -29,6 +32,9 @@ class ProductosModel(models.Model):
     on_delete=models.CASCADE
   )
 
+  def __str__(self) -> str:
+    return self.nombre
+
   class Meta:
     db_table = "productos"
 
@@ -39,6 +45,9 @@ class ClientesModel(models.Model):
   correo = models.CharField(max_length=100)
   dni = models.IntegerField()
   estado = models.BooleanField(default=True)
+
+  def __str__(self) -> str:
+    return self.nombre
 
   class Meta:
     db_table = "clientes"
@@ -57,6 +66,9 @@ class OrdenesModel(models.Model):
     on_delete=models.CASCADE
   )
 
+  def __str__(self) -> str:
+    return self.observacion
+
   class Meta:
     db_table = "ordenes"
 
@@ -72,6 +84,9 @@ class DetallesOrdenModel(models.Model):
     on_delete=models.CASCADE
   )
 
+  def __str__(self) -> str:
+    return self.cantidad
+
   class Meta:
     db_table = "ordenes_detalle"
 
@@ -84,10 +99,13 @@ class PagosModel(models.Model):
     on_delete=models.CASCADE
   )
 
+  def __str__(self) -> str:
+    return self.monto
+
   class Meta:
     db_table = "pagos"
 
-class BoletasPago(models.Model):
+class BoletasPagoModel(models.Model):
   id = models.AutoField(primary_key=True)
   codigo = models.CharField(max_length=45)
   total = models.FloatField()
@@ -96,6 +114,9 @@ class BoletasPago(models.Model):
     PagosModel,
     on_delete=models.CASCADE
   )
+
+  def __str__(self) -> str:
+    return self.codigo
 
   class Meta:
     db_table = "botelas_pago"
